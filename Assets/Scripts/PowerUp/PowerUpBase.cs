@@ -6,6 +6,7 @@ public class PowerUpBase : ItemCollactableBase
 {
     [Header("Power Up")]
     public float duration;
+
     protected override void OnCollect()
     {
         base.OnCollect();
