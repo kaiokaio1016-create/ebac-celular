@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   artType: 1
   levelPiecesStart:
-  - {fileID: 9108151878373056664, guid: 098579cd9ea7c2649a89cd7afacfe736, type: 3}
+  - {fileID: 4122405352802665945, guid: d7cc9caa240d36b4690deffa98877577, type: 3}
   levelPieces:
   - {fileID: 4122405352802665945, guid: c2d8e9fc71c99a74cbfe63affb612bb0, type: 3}
   - {fileID: 9108151878373056664, guid: 41fdad92da0f25c41a7e4d5845480fd3, type: 3}
   levelPiecesEnd:
-  - {fileID: 9108151878373056664, guid: f4f845d911423f448be5bf78fa864b17, type: 3}
+  - {fileID: 4122405352802665945, guid: fa4a2562497441f45895bc372727f543, type: 3}
   piecesStartNumber: 2
   piecesNumber: 9
   piecesEndNumber: 1
