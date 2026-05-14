@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int _index;
     private GameObject _currentLevel;
 
-    
+
     private List<LevelPieceBase> _spawnedPieces = new List<LevelPieceBase>();
     private LevelPieceBasedSetup _currSetup;
 
@@ -79,9 +79,9 @@ public class LevelManager : MonoBehaviour
             CreateLevelPiece(_currSetup.levelPiecesEnd);
         }
 
-        ColorManager.Instance.ChangeColorByType(_currSetup.artType);
+        // ColorManager.Instance.ChangeColorByType(_currSetup.artType);
     }
-     private void CreateLevelPiece(List<LevelPieceBase> list)
+    private void CreateLevelPiece(List<LevelPieceBase> list)
      {
         var piece = list[Random.Range(0, list.Count)];
         var spawnedPiece = Instantiate(piece, container);
@@ -99,7 +99,7 @@ public class LevelManager : MonoBehaviour
 
         foreach (var p in spawnedPiece.GetComponentsInChildren<ArtPiece>())
         {
-            p.ChangePiece(ArtManager.Instance.GetSetupByType(_currSetup.artType).gameObject);
+            // p.ChangePiece(ArtManager.Instance.GetSetupByType(_currSetup.artType).gameObject);
         }
 
         _spawnedPieces.Add(spawnedPiece);
@@ -114,15 +114,13 @@ public class LevelManager : MonoBehaviour
             {
                 Destroy(_spawnedPieces[i].gameObject);
             }
-
-            _spawnedPieces.Clear();
         }
+        _spawnedPieces.Clear(); // Mova para fora do loop
+    }
 
-    }    
-    
-     
-     IEnumerator CreateLevelPiecesCoroutine()
-     { 
+
+    IEnumerator CreateLevelPiecesCoroutine()
+    { 
         _spawnedPieces = new List<LevelPieceBase>();
 
         for (int i = 0; i < _currSetup.piecesNumber; i++)
@@ -130,7 +128,7 @@ public class LevelManager : MonoBehaviour
             CreateLevelPiece(_currSetup.levelPieces);
             yield return new WaitForSeconds(timeBetweenPieces);
         }
-     }
+    }
 
     #endregion
 
