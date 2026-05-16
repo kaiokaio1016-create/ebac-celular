@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemCollactableCoin : ItemCollactableBase
+public class ItemCollectableCoin : ItemCollactableBase
 {
     public Collider collider;
     public bool collect = false;
@@ -11,7 +11,7 @@ public class ItemCollactableCoin : ItemCollactableBase
 
     private void Start()
     {
-        //CoinsAnimationManager.Instance.RegisterCoin(this);
+        CoinsAnimationManager.Instance.RegisterCoin(this);
     }
 
     protected override void OnCollect()
@@ -19,7 +19,7 @@ public class ItemCollactableCoin : ItemCollactableBase
         base.OnCollect();
         collider.enabled = false;
         collect = true;
-        //PlayerController.Instance.Bounce();
+        PlayerController.Instance.Bounce();
     }
 
     protected override void Collect()

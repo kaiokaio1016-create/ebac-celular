@@ -28,6 +28,8 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Animation")]
     public AnimatorManager animatorManager;
 
+    [SerializeField] private BounceHelper _bounceHelper;
+
     //privates
     private bool _canRun;
     private Vector3 _pos;
@@ -39,6 +41,14 @@ public class PlayerController : Singleton<PlayerController>
     {
         _startPosition = transform.position;
         ResetSpeed();
+    }
+
+    public void Bounce()
+    {
+        if (_bounceHelper != null)
+        
+        _bounceHelper.Bounce();
+       
     }
 
     void Update()
@@ -115,9 +125,9 @@ public class PlayerController : Singleton<PlayerController>
 
     public void ChangeHeight(float amount, float duration, float animationDuration, Ease ease)
     {
-       // var p = transform.position;
-       // p.y = _startPosition.y + amount;
-       // transform.position = p;
+        var p = transform.position;
+        p.y = _startPosition.y + amount;
+        transform.position = p;
 
         transform.DOMoveY(_startPosition.y + amount,animationDuration).SetEase(ease);
         Invoke(nameof(ResetHeight), duration);
