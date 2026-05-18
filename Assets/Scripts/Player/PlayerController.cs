@@ -50,13 +50,14 @@ public class PlayerController : Singleton<PlayerController>
         ResetSpeed();
     }
 
-    public void Bounce()
+   public void Bounce()
+{
+    // O PlayerController apenas repassa a ordem para o Helper!
+    if (_bounceHelper != null)
     {
-        if (_bounceHelper != null)
-        
         _bounceHelper.Bounce();
-       
     }
+}
 
     void Update()
     {
