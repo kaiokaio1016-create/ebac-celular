@@ -19,6 +19,7 @@ public class ItemCollectableCoin : ItemCollactableBase
         base.OnCollect();
         collider.enabled = false;
         collect = true;
+        Debug.Log($"Player Controller: {PlayerController.Instance == null}");
         PlayerController.Instance.Bounce();
     }
 
