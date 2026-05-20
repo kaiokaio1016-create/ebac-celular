@@ -2,46 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemCollactableBase : MonoBehaviour
+public class ItemCollectableBase : MonoBehaviour
 {
     public string compareTag = "Player";
-    public ParticleSystem particleSystem;
-    public float timeToHide = 3;
-    public GameObject graphicItem;
+    public Collider coinCollider;
 
-    [Header("Sounds")]
-    public AudioSource audioSource;
+    [Header("Movement Setup")]
+    public float lerpSpeed = 5f;
+    public float minDistance = 1f;
 
-    private void OnTriggerEnter(Collider collision)
+    protected bool isCollected = false;
+    protected Transform playerTransform;
+
+    protected virtual void OnTriggerEnter(Collider collision)
     {
-        if (collision.transform.CompareTag(compareTag))
+        if (!isCollected && collision.transform.CompareTag(compareTag))
         {
+            playerTransform = collision.transform;
             Collect();
         }
     }
 
     protected virtual void Collect()
     {
-        if (graphicItem != null) graphicItem.SetActive(false);
-
-        Invoke("HideObject", timeToHide);
+        isCollected = true;
+        if (coinCollider != null) coinCollider.enabled = false;
         OnCollect();
-    }
-
-    private void HideObject()
-    {
-        gameObject.SetActive(false);
     }
 
     protected virtual void OnCollect()
     {
-        if (particleSystem != null)
-        {
-            particleSystem.transform.SetParent(null);
-            particleSystem.Play();
-        }
-
-        if (audioSource != null) audioSource.Play();
+        // Comportamento genérico (pode ser deixado vazio)
     }
 
+    protected virtual void Update()
+    {
+        // Move o item até o jogador após a coleta
+        if (isCollected && playerTransform != null)
+        {
+            transform.position = Vector3.Lerp(transform.position, playerTransform.position, lerpSpeed * Time.deltaTime);
+        }
+    }
 }

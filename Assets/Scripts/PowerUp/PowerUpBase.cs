@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpBase : ItemCollactableBase
+public class PowerUpBase : ItemCollectableBase
 {
     [Header("Power Up")]
     public float duration;
